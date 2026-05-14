@@ -1,0 +1,1356 @@
+<html>
+	<head>
+		<title>Bekind</title>
+		<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+		<style>
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Thin.woff2') format('woff2');
+    font-weight: 100;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraLight.woff2') format('woff2');
+    font-weight: 200;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Light.woff2') format('woff2');
+    font-weight: 300;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Regular.woff2') format('woff2');
+    font-weight: 400;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Medium.woff2') format('woff2');
+    font-weight: 500;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-SemiBold.woff2') format('woff2');
+    font-weight: 600;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Bold.woff2') format('woff2');
+    font-weight: 700;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-ExtraBold.woff2') format('woff2');
+    font-weight: 800;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Pretendard';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/pretendard@1.0/Pretendard-Black.woff2') format('woff2');
+    font-weight: 900;
+    font-display: swap;
+}
+
+			body, h1, h2, h3, p, ol, ul{margin: 0; padding: 0;}
+
+			html{
+				font-size: 16px;
+				word-break: keep-all;
+				line-height: 1.7;
+			  	font-family: "pretendard", sans-serif;
+  				font-optical-sizing: auto;
+  				font-weight: 400;
+  				font-style: normal;	
+  				color: #000623;
+  				scroll-behavior: smooth;
+			}
+			
+			body {
+    			font-family: 'Pretendard', sans-serif;
+    			line-height: 1.6;
+    			overflow-x: hidden;
+			}
+
+			/* 나브 */
+			.nav {
+			    position: fixed;
+			    top: 0;
+			    width: 100%;
+			    height: 52px;
+			    z-index: 1000;
+			    background: rgba(255, 255, 255, 0.8);
+			    backdrop-filter: blur(20px);
+			    -webkit-backdrop-filter: blur(20px);
+			    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+			    display: flex;
+			    align-items: center;
+			    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+			}
+			
+			.nav-contents {
+			    width: 980px;
+			    margin: 0 auto;
+			    padding: 0 20px;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: center;
+			}
+			
+			.nav-logo {
+			    font-size: 1.2rem;
+			    font-weight: 700;
+			    color: #282447;
+			    text-decoration: none;
+			}
+			
+			.nav-menu {
+			    display: flex;
+			    list-style: none;
+			    gap: 30px;
+			    align-items: center;
+			}
+			
+			.nav-menu li a {
+			    text-decoration: none;
+			    color: #282447;
+			    font-size: 0.9rem;
+			    font-weight: 500;
+			}
+			
+			/* 라이트 모드 알약 버튼: 네이비 배경 + 화이트 글자 */
+			.nav-btn {
+			    background-color: #282447 !important;
+			    color: #ffffff !important;
+			    padding: 8px 22px;
+			    border-radius: 50px;
+			    font-weight: 600 !important;
+			}
+			
+			/* [다크 모드] 텍스트 반전 및 버튼 색상 수정*/
+			
+			.nav.dark-mode {
+			    background: rgba(0, 6, 35, 0.5);
+			    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+			}
+			
+			.nav.dark-mode .nav-logo,
+			.nav.dark-mode .nav-menu li a {
+			    color: #ffffff !important;
+			}
+			
+			body .nav.dark-mode .nav-contents .nav-menu li a.nav-btn {
+			    background-color: #ffffff !important;
+			    color: #282447 !important;
+			}
+
+			section{
+			 	padding: 100px 0;
+			 }
+
+			.contents{
+				width: 900px;
+				margin: auto;
+				padding-top: 60px;
+			}
+			.full-section{
+				width: 100%;
+			}
+			.header{
+				background: url(header.png);
+				background-size: cover;
+				background-position: center;
+				padding: 80px 0 60px 0;
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				justify-content: center;
+			}
+			.header-logo{
+				width: 100px;
+				height: auto;
+				padding-bottom: 350px;
+			}
+			.tight-section {
+			    padding-top: 50px !important;
+			}
+			.type-slider {
+			    display: grid;
+			    grid-template-columns: repeat(4, minmax(225px, 1fr)); 
+			
+			    min-width: 1100px; 
+    			
+			    width: 100%; 
+    			
+			    gap: 40px 20px;
+			    padding: 60px 40px;
+			    box-sizing: border-box;
+			}
+			.type-card {
+			    position: relative;
+			    width: 100%;
+			    aspect-ratio: 3 / 4;
+			    border-radius: 24px;
+			    overflow: hidden;
+			    background: #f5f5f5;
+			    cursor: pointer;
+			    transition: transform 0.3s ease;
+			}
+			
+			/* 마우스를 올렸을 때 살짝 위로 뜨는 효과 (디자인 디테일) */
+			.type-card:hover {
+			    transform: translateY(-10px);
+			}
+			
+			.type-card img {
+			    width: 100%;
+			    height: 100%;
+    			
+			    object-fit: cover; 
+    			
+			    object-position: center; 
+    			
+			    display: block;
+			}
+			
+			/* hover 설명 */
+			.overlay{
+				position: absolute;
+				bottom: 0;
+				left: 0;
+				width: 100%;
+				height: 100%;
+
+				background: rgba(0,0,0,0.75);
+				color: white;
+			
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				text-align: center;
+			
+				opacity: 0;
+				transition: 0.3s;
+				padding: 25px;
+				box-sizing: border-box;
+			}
+			
+			.type-card:hover .overlay{
+				opacity: 1;
+			}
+			
+			.overlay h3{
+				font-size: 1rem;
+				margin-bottom: 5px;
+			}
+			
+			.overlay p{
+				font-size: 0.8rem;
+				line-height: 1.6;
+			}
+
+			.section-block{
+				display: flex;
+				flex-direction: column;
+				gap: 30px;
+			}
+			.flex-container{
+				display: flex;
+				justify-content: space-between;
+				align-items: flex-start;
+				gap: 60px;
+			}
+
+			.text-box{
+				width: 500px;
+				flex-shrink: 0;
+			}
+
+			.image-box{
+				flex-grow: 1;
+				display: flex;
+				justify-content: flex-start;
+				gap: 40px;
+			}
+			.img-box{
+				position: relative;
+				width: 100%;
+				height: 200px;
+				margin-bottom: 20px;
+			}
+			.img-box img{
+				position: absolute;
+				top: 0;
+				left: 0;
+				width: 100%;
+				height: auto;
+				transition: 0.3s ease-in-out;
+			}
+			.heart-item{
+				display: flex;
+				flex-direction: column;
+				align-items: center;
+				width: 160px;
+				cursor: pointer;
+			}
+			.heart-item .hover{
+				opacity: 0;
+			}
+			.heart-item:hover .default{
+				opacity: 0;
+			}
+			.heart-item:hover .hover{
+				opacity: 1;
+			}
+
+			.info-box {
+			    background-color: #f8f9fa;
+			    border: 1px solid #e9ecef;
+			    border-radius: 20px;
+			    padding: 60px 40px;
+			    text-align: center;
+			}
+			
+			.info-list {
+			    list-style: none;
+			    padding: 0;
+			    display: flex;
+			    flex-direction: column;
+			    gap: 34px;
+			    align-items: center;
+			}
+
+			.info-list li {
+			    background-color: #282447;
+			    border-radius: 50px; 
+			    padding: 15px 40px;
+			    width: fit-content;
+			    min-width: 340px;
+    			
+			    font-size: 1.2rem;
+			    font-weight: 500;
+			    color: white;
+			    box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+			}
+			.info-box .normal {
+			    padding-bottom: 40px;
+			}
+
+			/*성격구조 재형성술*/
+			.psr-section {
+			    display: flex;
+			    flex-direction: column;
+			    align-items: center;
+			    justify-content: center;
+			    text-align: center;
+			    padding-top: 20px;
+			    padding-bottom: 20px;
+			}
+			
+			.psr-logo-box {
+			    margin-bottom: 40px;
+			}
+			
+			.letter-row {
+			    display: flex;
+			    align-items: baseline;
+			    line-height: 0.6;
+			}
+			
+			.big-char {
+			    font-size: 18rem;
+			    font-weight: 800;
+			}
+			
+			.small-chars {
+			    font-size: 3rem;
+			    font-weight: 600;
+			}
+			
+			.psr-text-box {
+			    width: 100%;
+			    max-width: 400px; 
+			}
+
+
+			/*과정*/
+			.step-flex-container{
+				display: flex;
+				flex-wrap: wrap;
+				gap: 20px;
+				padding-top: 40px;
+				align-items: stretch;
+			}
+			.step-card{
+				width: calc(50% - 10px);
+				background: rgba(255, 255, 255, 0.1);
+    			border: 1px solid rgba(255, 255, 255, 0.3);
+    			padding: 25px;
+    			border-radius: 15px;
+    			box-sizing: border-box;
+    			backdrop-filter: blur(3px);
+			}
+			.step-card h2{
+				font-size: 1.4rem;
+				margin-bottom: 15px;
+				color: white;
+			}
+
+			/*사진 배경*/
+			.step1{
+				background: url(step1.png);
+				background-size: cover;
+				background-attachment: fixed;
+				color: white;
+			}
+			.step2{
+				background: url(step2.png);
+				background-size: cover;
+				background-attachment: fixed;
+				color: white;
+			}	
+			.step3, .step4 {
+			    position: relative;
+			    overflow: hidden;
+			    background-image: url(step3.png);
+			    background-size: cover;
+			    background-attachment: fixed;
+			    color: white;
+			}
+			
+			.step3::before {
+			    content: "";
+			    position: absolute;
+			    top: 0; left: 0; right: 0; bottom: 0;
+			    backdrop-filter: blur(10px); 
+			    background: rgba(0, 0, 0, 0.5);
+			    z-index: 1;
+			}
+			
+			.step3 .contents {
+			    position: relative;
+			    z-index: 2;
+			}
+			
+			.step4 .contents {
+			    position: relative;
+			    z-index: 2;
+			}	
+
+			.step5{
+				background: url(step5.png);
+				background-size: cover;
+				background-attachment: fixed;
+				color: white;
+			}
+			.step6{
+				background: url(step6.png);
+				background-size: cover;
+				background-attachment: fixed;
+				color: white;
+			}
+
+			/*폰트*/
+			.title{
+				color: white;
+				font-size: 7rem;
+				font-weight: 800;
+				letter-spacing: -0.02em;
+				padding-bottom: 24px;
+				line-height: 1.1;
+			}
+			.sub-text{
+				font-size: 1.4rem;
+				font-weight: 500;
+				letter-spacing: 0.05em;
+				color: white;
+			}
+
+			.mini-title{
+				font-size: 3rem;
+				font-weight: 800;
+				padding-bottom: 24px;
+			}
+
+			.normal{
+				font-weight: 600;
+				line-height: 2;
+			}
+
+			.caption{
+				font-size: 1rem;
+				font-weight: 600;
+				text-align: center;
+			}
+
+			.step-font{
+				color: white;
+				font-size: 1.4rem;
+				line-height: 1.4;
+				font-weight: 600;
+			}
+			.step-font-padding{
+				padding-bottom: 50px;
+			}
+
+			/*글자 배치*/
+			.center{
+				text-align: center;
+			}
+
+			.left{
+				text-align: left;
+				padding-right: 500px;
+			}
+			.right{
+				padding-left: 600px;
+			}			
+
+			.strong{
+				font-weight: 500;
+			}
+
+			.black{
+				color: #000623;	
+			}
+
+			/*예약하기*/
+			.info-btn-style {
+			    display: inline-block;
+			    background-color: #282447;
+			    border-radius: 50px;
+			    padding: 18px 80px;
+			    min-width: 150px;
+    			
+			    font-size: 1.2rem;
+			    font-weight: 500;
+			    color: white !important;
+			    text-decoration: none;
+			    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    			
+			    transition: all 0.3s ease;
+			    cursor: pointer;
+			}
+			
+			.info-btn-style:hover {
+			    opacity: 0.9;
+			    transform: translateY(-2px);
+			    box-shadow: 0 6px 20px rgba(0,0,0,0.15);
+			}
+
+			.reservation-section {
+			    padding: 0 0 80px 0;
+			}
+
+			.final-cta-section {
+			    position: relative;
+			    width: 100%;
+			}
+			
+			/* 공통 심장 이미지 스타일 */
+			.side-heart {
+			    position: absolute;
+			    top: 50%;
+			    transform: translateY(-50%);
+			    width: 700px;
+			    height: auto;
+			    opacity: 0.85;
+			    z-index: 1;
+			    pointer-events: none;
+			}
+			
+			.side-heart.left {
+			    left: -250px;
+			}
+			
+			.side-heart.right {
+			    right: -250px;
+			}
+			
+			.final-cta-section .contents {
+			    position: relative;
+			    z-index: 2;
+			}
+
+			/*푸터*/
+			.footer {
+			    background-color: #282447;
+			    padding: 80px 0 60px 0;
+			    color: #ffffff;
+			    width: 100%;
+			    margin-top: 100px;
+			}
+			
+			.footer-container {
+			    width: 980px;
+			    margin: 0 auto;
+			    padding: 0 20px;
+			    box-sizing: border-box;
+			}
+			
+			.footer-nav {
+			    display: grid;
+			    grid-template-columns: repeat(4, 1fr);
+			    gap: 40px;
+			    margin-bottom: 60px;
+			}
+			
+			.footer-nav-column h3 {
+			    font-size: 13px;
+			    font-weight: 600;
+			    margin-bottom: 20px;
+			    color: #ffffff;
+			}
+			
+			.footer-nav-column ul {
+			    list-style: none;
+			    padding: 0;
+			    margin: 0;
+			}
+			
+			.footer-nav-column ul li, 
+			.footer-nav-column ul li a {
+			    font-size: 12px;
+			    color: #d2d2d7;
+			    text-decoration: none;
+			    line-height: 1.5;
+			}
+			
+			.footer-nav-column ul li {
+			    margin-bottom: 12px;
+			}
+			
+			.footer-nav-column ul li a:hover {
+			    color: #ffffff;
+			    text-decoration: underline;
+			}
+			
+			.footer-bottom {
+			    border-top: 1px solid rgba(255, 255, 255, 0.1);
+			    padding-top: 30px;
+			    display: flex;
+			    justify-content: space-between;
+			    align-items: flex-end;
+			}
+			
+			.footer-logo-white {
+			    width: 40px;
+			    filter: brightness(0) invert(1);
+			    opacity: 0.9;
+			    margin-bottom: 15px;
+			}
+			
+			.footer-info-text {
+			    font-size: 11px;
+			    line-height: 1.8;
+			    color: #a1a1a6;
+			}
+			
+			.copyright-light {
+			    font-size: 11px;
+			    color: #86868b;
+			}
+
+			/*그래프*/
+			.case-section { background: #fff; padding: 100px 0; }
+			
+	        .toggle-container {
+	        	display: flex;
+	        	justify-content:
+	        	center; gap: 15px;
+	        	margin-bottom: 50px;
+	        	padding-top: 30px;
+	        }
+			/* 알약 버튼 기본 (미선택 시 화이트) */
+			.btn-pill {
+			    padding: 12px 40px;
+			    border-radius: 50px;
+			    border: 1px solid #282447;
+			    background: white; /* 기본 배경 화이트 */
+			    color: #282447;      /* 글자 네이비 */
+			    cursor: pointer;
+			    font-size: 1rem;
+			    font-weight: 600;
+			    transition: all 0.3s ease;
+			}
+			
+			/* 활성화된 버튼 (선택 시 네이비) */
+			.btn-pill.active {
+			    background: #282447;
+			    color: white;
+			}
+
+        .case-card { border: 1px solid #ddd; border-radius: 30px; padding: 50px; background: #fff; }
+        .patient-info { margin-bottom: 40px; text-align: left; }
+        .patient-info h3 { font-size: 1.6rem; margin-bottom: 5px; }
+        .patient-info .age { font-size: 1rem; color: #666; font-weight: 400; margin-left: 10px; }
+
+        .charts-grid { display: grid; grid-template-columns: 1.2fr 1.5fr; gap: 60px; align-items: center; }
+        .chart-item { width: 100%; height: 350px; position: relative; }
+
+
+		</style>
+	</head>
+	<body>
+
+		<nav class="nav" id="main-nav">
+		    <div class="nav-contents">
+		        <a href="#top" class="nav-logo">Bekind</a>
+		        <ul class="nav-menu">
+		            <li><a href="#intro">개요</a></li>
+		            <li><a href="#syndrome">못된 심보 증후군</a></li>
+		            <li><a href="#step">수술과정</a></li>
+		            <li><a href="#reservation" class="nav-btn">예약하기</a></li>
+		        </ul>
+		    </div>
+		</nav>
+
+		<header class="header" id="top" data-nav-light="false">
+			<div class="contents center">
+				<img src="logo.png" class="header-logo">
+				<h1 class="title">
+					이제는 성격도<br>성형이 가능하다
+				</h1>
+				<p class="sub-text">
+					비카인드 성형내과에서 전세계에 처음 선보이는 혁신
+				</p>
+			</div>
+		</header>
+
+		<section>
+			<div class="contents" id="intro">
+				<div class="flex-container">
+
+					<div class="text-box">
+						<h2 class="mini-title">
+							성격도 치료가 필요한 영역
+						</h2>
+						<p class="normal">
+							반복되는 대인관계 문제, 조절되지 않는 언어 습관, 타인을 통제하려는 행동 패턴.
+							이러한 문제를 교정이 필요한 <strong>못된 심보 증후군</strong>으로 진단합니다.
+							당신을 힘들게 하는 성격의 문제는 단순한 성향이 아닌 심장 내 반응 구조의 왜곡에서 비롯된 치료가 필요한 상태입니다.
+						</p>
+					</div>
+
+					<div class="image-box">
+						<div class="heart-item">
+							<div class="img-box">
+								<img src="heart-icon1.png" class="default">
+								<img src="heart1.png" class="hover">
+							</div>
+							<p class="caption">정상 심장</p>
+						</div>
+
+						<div class="heart-item">
+							<div class="img-box">
+								<img src="heart-icon2.png" class="default">
+								<img src="heart2.png" class="hover">
+							</div>
+							<p class="caption">못된 심보 증후군 심장</p>
+						</div>
+					</div>
+
+				</div>
+			</div>
+		</section>
+
+		<section class="tight-section">
+			<div class="contents">
+				<div class="info-box">
+					<h2 class="mini-title">
+						다각도 성격 분석 데이터
+					</h2>
+					<p class="normal">
+						비카인드 성형내과는 개인의 성격을 다각도로 정밀 분석하여<br>
+						부적응적 반응을 일으키는 성격의 구조적 원인을 진단하고 최적의 구조 재형성술(PSR)을 시행합니다.
+					</p>
+		
+					<ul class="info-list">
+						<li>개인 성향 정밀 검사 PKA Personality Scan</li>
+                		<li>행동 반응 패턴 분석</li>
+                		<li>감정 민감도 테스트</li>
+                		<li>대인관계 스트레스 지수 측정</li>
+                	</ul>
+            	</div>
+			</div>
+		</section>
+
+		<section class="full-section" id="syndrome">
+			<div class="contents">
+				<h2 class="mini-title center">
+					못된 심보 증후군
+				</h2>
+				<p class="step-font center black">
+					수술은 사전 성격 분석 데이터와 심장의 외형 구조를 교차 비교하여 진행됩니다.<br>
+					아래는 ‘못된 심보 증후군’에서 관찰되는 대표적인 심장 구조 유형입니다.
+				</p>
+			</div>
+				<div class="type-slider">
+		
+					<div class="type-card">
+						<img src="1.png">
+						<div class="overlay">
+							<h3>도벽형</h3>
+							<p>
+								충동적 획득 욕구가 반복적으로 발생하는 행동 패턴<br><br>
+								심장 전체가 저산소 상태를 보이며 푸르스름하게 변색되어 있습니다.
+								표면에는 염증성 융기 조직이 다수 형성되어 있으며, 고름과 유사한 점성 물질이 국소적으로 축적되어 있는 모습을 보입니다.  
+							</p>
+						</div>
+					</div>
+		
+					<div class="type-card">
+						<img src="2.png">
+						<div class="overlay">
+							<h3>가스라이팅형</h3>
+							<p>
+								타인의 인지 구조를 왜곡하여 관계를<br>지배하려는 성향<br><br>
+								심장 표면에 비정형 혈관 네트워크가 과도하게 증식되어 그물망 구조를 형성하고 있습니다. 주요 혈관은 비정상적으로 분기되어 있고 외부로 뻗어나가는 조직 덩어리가 반복적으로 관찰됩니다.
+							</p>
+						</div>
+					</div>
+		
+					<div class="type-card">
+						<img src="5.png">
+						<div class="overlay">
+							<h3>통제 집착형</h3>
+							<p>
+								관계 내 모든 변수를 통제하려는 강박적 행동 패턴<br><br>
+								비대한 자의식의 영향으로 심장이 전반적으로 비대해져 있으며, 혈관과 조직이 과도하게 비후된 상태를 보입니다. 표면 색은 균일하지 않고 붉은 계열의 불규칙한 얼룩이 분포되어 있습니다.
+							</p>
+						</div>
+					</div>
+		
+					<div class="type-card">
+						<img src="4.png">
+						<div class="overlay">
+							<h3>공감 결핍형</h3>
+							<p>
+								타인의 감정 신호를 인식하지 못하는 반응 구조<br><br>
+								감수성이 극도로 매말라있는 상태로 심장 표면이 석회화되어 있으며 조직이 건조하고 거칠게 변형되어 있습니다. 색상은 건조한 토양과 유사한 탁한 색을 띠며 전반적인 반응성이 극도로 저하된 상태입니다.
+							</p>
+						</div>
+					</div>
+		
+					<div class="type-card">
+						<img src="3.png">
+						<div class="overlay">
+							<h3>언어 공격형</h3>
+							<p>
+								감정 자극 시 공격적 언어 반응을 과도하게 표출하는 패턴<br><br>
+								심장 외벽에 치아와 유사한 경질 돌출 구조가 형성되어 있습니다. 이 구조는 외부 자극 시 돌출되며, 반응 과정에서 공격성을 증폭시키는 역할을 합니다. 방치할 경우 심장 외벽에 빼곡히 구조가 분포하여 위험성이 커집니다.
+							</p>
+						</div>
+					</div>	
+
+					<div class="type-card">
+						<img src="8.png">
+						<div class="overlay">
+							<h3>과민 신경형</h3>
+							<p>
+								사소한 자극에도 과도한 짜증과 예민한 반응을 표출하는 유형<br><br>
+								심장 하단부가 비정상적으로 뾰족하게 변형되어 있으며, 표면에는 염증성 돌기 구조가 다수 형성되어 있습니다. 조직 전체는 탁하고 건조한 황색 계열로 변색되어 있고, 반응 전달 속도가 과도하게 증가된 패턴이 관찰됩니다. 작은 외부 자극에도 과민 반응이 쉽게 발생하는 상태입니다.
+							</p>
+						</div>
+					</div>				
+		
+					<div class="type-card">
+						<img src="6.png">
+						<div class="overlay">
+							<h3>붕괴 진행형</h3>
+							<p>
+								살인충동형의 전단계에서 보이는 패턴<br><br>
+								심장 표면에 다수의 함몰과 약화된 조직층이 관찰됩니다. 완전한 관통은 발생하지 않았으나, 내부 구조 붕괴가 진행 중인 상태로 조직의 탄성이 크게 저하되어 있습니다.
+							</p>
+						</div>
+					</div>
+
+					<div class="type-card">
+						<img src="7.png">
+						<div class="overlay">
+							<h3>살인 충동형</h3>
+							<p>
+								살인 충동이 수시로 드는 사이코패스적 반응 패턴<br><br>
+								심장 전반에 다수의 관통성 공동이 형성되어 있으며, 조직이 심하게 손상되어 불규칙하게 붕괴된 상태를 보입니다. 표면은 너덜너덜하게 분해되어 있으며 푸른색과 베이지색이 혼합된 비정상적 색 변이를 나타냅니다. 혈관 구조 또한 유지되지 못하고 무질서하게 붕괴된 흔적이 관찰됩니다.
+							</p>
+						</div>
+					</div>
+				</div>
+		</section>
+
+
+		<section>
+		    <div class="contents psr-section">
+		        <div class="psr-logo-box">
+		            <div class="letter-row">
+		                <span class="big-char">P</span>
+		                <span class="small-chars">ersonality</span>
+		            </div>
+		            <div class="letter-row">
+		                <span class="big-char">S</span>
+		                <span class="small-chars">tructural</span>
+		            </div>
+		            <div class="letter-row">
+		                <span class="big-char">R</span>
+		                <span class="small-chars">econstruction</span>
+		            </div>
+		        </div>
+		
+		        <div class="psr-text-box">
+		            <p class="normal step-font-padding">
+		            	Personality Structural Reconstruction<br>
+		                성격 구조 재형성술은 단순한 교정이 아닌 정밀한 형상 재구성 과정으로 이루어집니다. 따라서 재발의 위험성을 줄이고 완전한 성격 성형을 성공시킵니다.
+		            </p>
+		        </div>
+		    </div>
+		</section>
+
+		<section class="step1" id="step" data-nav-light="false">
+			<div class="contents white">
+				<p class="normal">
+					투명한 수술 과정
+				</p>
+
+				<h2 class="mini-title">
+					1. 박리
+				</h2>
+				<p class="step-font left step-font-padding">
+					Structural Exposure & Layer Separation
+					심장 외막을 따라 감정 반응층과 행동 반응층을 분리합니다.
+					이 과정에서 성격 왜곡이 집중된 부위를 응력 집중 구간(Stress Concentration Zone)으로 식별합니다.
+				</p>
+			</div>
+		</section>
+
+		<section class="step2" data-nav-light="false">
+			<div class="contents">
+				<h2 class="mini-title">
+					2. 심장 적출 및 안정
+				</h2>
+				<p class="step-font left step-font-padding">
+					Cardiac Extraction & Thermal Stabilization
+					심장을 체외로 이동시킨 후
+					저온 안정화 챔버에서 조직의 변형을 억제합니다.
+				</p>
+			</div>
+		</section>
+
+		<section class="step3" data-nav-light="false">
+			<div class="contents">
+				<h2 class="mini-title">
+					3. 성형 준비
+				</h2>
+				<p class="step-font left step-font-padding">
+					본격적인 성형 전, 심장 조직은 다음 상태로 조정됩니다.
+					반응성 완화 (Reactivity Reduction)
+					조직 유연성 확보 (Ductility Adjustment)
+					내부 응력 완화 (Stress Relief Conditioning)
+					이 단계는 이후 성형 정밀도를 좌우합니다.
+				</p>
+			</div>
+		</section>	
+
+		<section class="step4" data-nav-light="false">
+			<div class="contents">
+				<h2 class="mini-title">
+					4. 망치 성형
+				</h2>
+				<p class="step-font left">
+					비카인드 수술의 중심 단계입니다.
+					정밀 타격 기반 구조 재배열이 진행됩니다.
+				</p>
+				
+				<div class="step-flex-container">
+					<div class="step-card">
+						<h2>
+							Primary Forging 단조
+						</h2>
+						<p>
+							특수 제작된 의료용 헤머를 사용하여 문제 성향이 형성된 부위를 중심으로 국소 압축을 가합니다.<br>
+							이 과정은 성격의 결 방향(Grain)을 재정렬하는 핵심 단계입니다.
+						</p>
+					</div>
+
+				<div class="step-card">
+					<h2>
+						Raising 레이징
+					</h2>
+					<p>
+						심장의 특정 부위를 안쪽에서 바깥으로 밀어 올려 내부 반응 볼륨을 조정합니다.
+						공감 능력 부족 환자에서 주로 적용되는 단계입니다.
+					</p>
+				</div>
+
+				<div class="step-card">
+					<h2>
+						Planishing 플래니싱
+					</h2>
+					<p>
+						미세한 반복 타격을 통해 표면의 불균형한 반응 패턴을 균일화합니다.
+						감정 기복 완화, 감정 반응의 일관성 확보를 위한 단계입니다.
+					</p>
+				</div>
+
+				<div class="step-card">
+					<h2>
+						Truing 트루잉
+					</h2>
+					<p>
+						전체 구조를 재정렬하여 심장의 좌우 균형과 반응 대칭성을 맞춥니다.
+						과잉 반응 교정, 둔감 반응 교정을 위한 마무리 단계입니다.
+					</p>
+				</div>
+			</div>
+		</section>
+
+		<section class="step5" data-nav-light="false">
+			<div class="contents">
+				<h2 class="mini-title">
+					5. 열처리 기반 안정화
+				</h2>
+				<p class="step-font left">
+					성형된 구조를 고정하기 위한 단계입니다.
+				</p>
+				<div class="step-flex-container">
+					<div class="step-card">
+						<h2>
+							Quenching 담금질
+						</h2>
+						<p>
+							급속 냉각을 통해 재형성된 구조를 즉시 고정합니다. 반응 속도를 안정화하고 새롭게 설계된 구조 기억을 유지시키는 공정입니다.
+						</p>
+					</div>
+					<div class="step-card">
+						<h2>
+							Tempering 뜨임
+						</h2>
+						<p>
+							담금질로 인해 발생할 수 있는 과도한 경직성과 취성을 완화합니다.
+                    		감정의 유연성을 회복시키고, 과도한 이성화 방지를 통해 인간미를 부여합니다.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>	
+
+		<section class="step6" data-nav-light="false">
+			<div class="contents">
+				<h2 class="mini-title">
+					6. 재이식 및 동기화
+				</h2>
+				<p class="step-font left step-font-padding">
+					성형된 심장을 재삽입 후 신경 반응과의 정밀 봉합을 진행합니다.
+					새로운 성격 구조가 신체 전반에 자연스럽게 적용되도록 유도하며 재이식을 진행합니다.
+				</p>
+
+				<h2 class="mini-title right">
+					7. 회복 및 적응
+				</h2>
+				<p class="step-font right step-font-padding">
+					10~14일 입원하여 초기 성격 적응 관찰합니다.
+					사회적 반응 테스트를 진행하며 안정적으로 심장이 적응하는 과정을 케어합니다.
+				</p>
+			</div>
+		</section>
+
+		<section class="case-section">
+		    <div class="contents">
+		        <h2 class="mini-title center">
+		     	   PSR 적용 사례
+		    	</h2>
+		        <p class="step-font center black">
+		        	성격 구조 및 주요 지표 변화
+		        </p>
+        		
+		        <!-- 알약 토글 버튼 -->
+		        <div class="toggle-container">
+            		<button class="btn-pill active" id="btn-before" onclick="updateCharts('before')">
+		            	수술 전
+		            </button>
+		            <button class="btn-pill" id="btn-after" onclick="updateCharts('after')">
+		            	수술 후
+		            </button>
+		        </div>
+		
+		        <div class="case-card">
+		            <div class="patient-info">
+		                <h3>폭력 반응형 <span class="age">37세 남성</span></h3>
+		                <p>반복적인 폭력 사건 및 충동 조절 장애</p>
+		            </div>
+		
+		            <div class="charts-grid">
+		                <!-- 왼쪽: 방사형 차트 -->
+		                <div class="chart-item">
+		                    <canvas id="radarChart"></canvas>
+		                </div>
+		                <!-- 오른쪽: 가로 막대 차트 -->
+		                <div class="chart-item">
+		                    <canvas id="barChart"></canvas>
+		                </div>
+		            </div>
+		        </div>
+		    </div>
+		</section>
+
+		<section class="final-cta-section">
+				<img src="heart2.png" class="side-heart left">
+				<img src="heart1.png" class="side-heart right">
+
+				<div class="contents psr-section">
+					<h2 class="mini-title center">
+						지금까지 치료되지 않았던 영역<br>
+						이제는 교정 가능합니다
+					</h2>
+					<div class="psr-text-box">
+						<p class="normal center">
+							우리는 감정을 위로하지 않습니다. 비카인드는 인간 내부에 형성된 반응 구조를 분석하고, 가장 근본적인 형태부터 재설계합니다. 성격은 교정될 수 있습니다.
+						</p>
+					</div>
+				</div>
+		</section>
+
+		<section class="reservation-section" id="reservation">
+		    <div class="contents center">
+		        <a href="javascript:void(0);" class="info-btn-style">상담 예약하기</a>
+		    </div>
+		</section>
+
+		<footer class="footer">
+		    <div class="footer-container">
+		        <nav class="footer-nav">
+		            <div class="footer-nav-column">
+		                <h3>서비스 안내</h3>
+		                <ul>
+		                    <li><a href="#intro">성격 구조 진단(PKA)</a></li>
+		                    <li><a href="#step">PSR 수술 공법</a></li>
+		                    <li><a href="#step">수술 후 케어 시스템</a></li>
+		                    <li>의료진 소개</li>
+		                </ul>
+		            </div>
+		            <div class="footer-nav-column">
+		                <h3>증후군별 치료</h3>
+		                <ul>
+		                    <li><a href="#syndrome">공감 결핍형 교정</a></li>
+		                    <li><a href="#syndrome">통제 집착형 교정</a></li>
+		                    <li><a href="#syndrome">언어 공격형 교정</a></li>
+		                    <li><a href="#syndrome">분노 조절 장애 치료</a></li>
+		                </ul>
+		            </div>
+		            <div class="footer-nav-column">
+		                <h3>고객 지원</h3>
+		                <ul>
+		                    <li><a href="#reservation">온라인 상담 예약</a></li>
+		                    <li>수술 후 주의사항</li>
+		                    <li>자주 묻는 질문</li>
+		                    <li>오시는 길</li>
+		                </ul>
+		            </div>
+		            <div class="footer-nav-column">
+		                <h3>비카인드 정신</h3>
+		                <ul>
+		                    <li><a href="#top">브랜드 철학</a></li>
+		                    <li>윤리 경영 선포</li>
+		                    <li>사회 공헌 활동</li>
+		                    <li>프라이버시 정책</li>
+		                </ul>
+		            </div>
+		        </nav>
+		
+		        <div class="footer-bottom">
+		            <div class="footer-left">
+		                <img src="footer-logo.png" class="footer-logo-white" alt="BeKind Logo">
+		                <p class="footer-info-text">
+		                    비카인드 성형내과 | 대표: 강다영<br>
+		                    사업자등록번호: 21100847 | 이메일: info@bekind.com | 대표번호: 1588-0000<br>
+		                    주소: 서울특별시 강남구 테헤란로13길 16(역삼동), 비카인드 빌딩 12층
+		                </p>
+		            </div>
+		            <div class="footer-right">
+                		<p class="copyright-light">Copyright © 2026 BEKIND Plastic Surgery. All rights reserved.</p>
+		            </div>
+		        </div>
+		    </div>
+		</footer>
+
+		<script>
+		    const dataPoints = {
+		        labels: ['공격성', '충동성', '통제 집착', '감정 안정성', '공감 반응', '사회 적응도'],
+		        before: [92, 88, 79, 23, 11, 19],
+		        after: [18, 22, 21, 78, 89, 93]
+		    };
+		
+		    const chartOptions = {
+		        responsive: true,
+		        maintainAspectRatio: false,
+		        plugins: { legend: { display: false } }
+		    };
+		
+		    // [중요] 컨텍스트 변수 선언 추가
+		    const radarCtx = document.getElementById('radarChart').getContext('2d');
+		    const barCtx = document.getElementById('barChart').getContext('2d');
+		
+		    // 1. 방사형 차트 초기화
+		    const radarChart = new Chart(radarCtx, {
+		        type: 'radar',
+		        data: {
+		            labels: dataPoints.labels,
+		            datasets: [{
+		                data: dataPoints.before,
+		                backgroundColor: 'rgba(40, 36, 71, 0.6)',
+		                borderColor: '#282447',
+		                borderWidth: 2,
+		                pointRadius: 4,
+		                pointBackgroundColor: '#282447',
+		                pointBorderColor: '#fff',
+		                pointBorderWidth: 2,
+		                pointHoverRadius: 6
+		            }]
+		        },
+		        options: {
+		            ...chartOptions,
+		            scales: { 
+		                r: { 
+		                    min: 0, 
+		                    max: 100, 
+		                    ticks: { display: false },
+		                    grid: { color: 'rgba(0, 0, 0, 0.05)' },
+		                    angleLines: { color: 'rgba(0, 0, 0, 0.05)' }
+		                } 
+		            }
+		        }
+		    });
+		
+		    // 2. 막대 차트 초기화
+		    const barChart = new Chart(barCtx, {
+		        type: 'bar',
+		        data: {
+		            labels: dataPoints.labels,
+		            datasets: [
+		                {
+		                    // 실제 데이터 게이지
+		                    data: dataPoints.before,
+		                    backgroundColor: '#282447',
+		                    borderRadius: 20,
+		                    barThickness: 25,
+		                    order: 1
+		                },
+		                {
+		                    // 100% 배경 막대
+		                    data: [100, 100, 100, 100, 100, 100],
+		                    backgroundColor: '#F0F0F0',
+		                    borderRadius: 20,
+		                    barThickness: 25,
+		                    order: 2,
+		                    // 배경 막대 호버 효과 제거
+		                    hoverBackgroundColor: '#F0F0F0',
+		                    hoverBorderWidth: 0
+		                }
+		            ]
+		        },
+		        options: {
+		            ...chartOptions,
+		            indexAxis: 'y',
+		            scales: { 
+		                x: { display: false, max: 100, stacked: true },
+		                y: { 
+		                    display: true, 
+		                    stacked: true, 
+		                    grid: { display: false }, 
+		                    border: { display: false } 
+		                }
+		            },
+		            plugins: {
+		                legend: { display: false },
+		                tooltip: {
+		                    filter: function(tooltipItem) {
+		                        return tooltipItem.datasetIndex === 0;
+		                    }
+		                }
+		            }
+		        }
+		    });
+		
+		    // 3. 데이터 업데이트 함수 (하나로 통합)
+		    function updateCharts(mode) {
+		        const isBefore = (mode === 'before');
+		        const newData = isBefore ? dataPoints.before : dataPoints.after;
+        		
+		        // 데이터 교체
+		        radarChart.data.datasets[0].data = newData;
+		        barChart.data.datasets[0].data = newData;
+        		
+		        // 차트 갱신
+		        radarChart.update();
+		        barChart.update();
+		
+		        // 버튼 활성화 스타일 제어
+		        document.getElementById('btn-before').classList.toggle('active', isBefore);
+		        document.getElementById('btn-after').classList.toggle('active', !isBefore);
+		    }
+		</script>
+
+		<script>
+		    const nav = document.getElementById('main-nav');
+		    const darkSections = document.querySelectorAll('[data-nav-light="false"]');
+		
+		    const navObserverOptions = {
+		        root: null,
+		        rootMargin: "0px 0px -100% 0px",
+		        threshold: 0
+		    };
+		
+		    const navObserver = new IntersectionObserver((entries) => {
+		        entries.forEach(entry => {
+		            if (entry.isIntersecting) {
+		                nav.classList.add('dark-mode');
+		            } else {
+		                checkSectionTheme();
+		            }
+		        });
+		    }, {
+		        rootMargin: "-1px 0px -99% 0px",
+		        threshold: 0
+		    });
+		
+		    darkSections.forEach(section => {
+		        navObserver.observe(section);
+		    });
+		
+		    function checkSectionTheme() {
+		        let isDark = false;
+		        darkSections.forEach(section => {
+		            const rect = section.getBoundingClientRect();
+		            if (rect.top <= 52 && rect.bottom >= 52) {
+		                isDark = true;
+		            }
+		        });
+		
+		        if (isDark) {
+		            nav.classList.add('dark-mode');
+		        } else {
+		            nav.classList.remove('dark-mode');
+		        }
+		    }
+		
+		    window.addEventListener('load', checkSectionTheme);
+		    window.addEventListener('scroll', checkSectionTheme);
+		</script>
+
+	</body>
+</html>
